@@ -45,7 +45,6 @@ from novelai_api.Msgpackr_Extensions import (
     Ext42,
 )
 import novelai_api.utils
-from icecream import ic
 import atexit
 
 class API:
