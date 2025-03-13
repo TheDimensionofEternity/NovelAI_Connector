@@ -17,7 +17,6 @@ tested it, there are likely to be bugs.
 """
 
 from pydantic import BaseModel, Field
-from icecream import ic
 import asyncio
 from novelai_api import NovelAIAPI
 from fastapi import Request
