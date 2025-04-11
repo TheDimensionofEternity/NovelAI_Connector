@@ -287,7 +287,6 @@ class Pipe:
         formatted_message = formatted_message.strip()
         if should_continue:
             formatted_message += "\n"
-        print(formatted_message)
         return formatted_message
 
     def pipes(self):
@@ -453,15 +452,14 @@ class Pipe:
 
             preset_gen["order"] = [self.INT_TO_ORDER[o] for o in preset_gen["order"]]
 
-            prompt:str = PREAMBLE[model] + self.format_message(
+            prompt: str = PREAMBLE[model] + self.format_message(
                 MESSAGES, __user__, assistant
             )
-            # print(type(prompt))
             token_prompt = Tokenizer.encode(model=model, o=prompt)
             token_prompt.reverse()
-            token_prompt = token_prompt[:int(self.valves.TOKEN_CUTOFF)]
+            token_prompt = token_prompt[: int(self.valves.TOKEN_CUTOFF)]
             token_prompt.reverse()
-            prompt = Tokenizer.decode(model=model,o=token_prompt)
+            prompt = Tokenizer.decode(model=model, o=token_prompt)
             del token_prompt
 
             preset = Preset(
@@ -513,7 +511,6 @@ class Pipe:
                     biases=bias_groups,
                     prefix=module,
                     stop_sequences=stop_sequence,
-
                 )
 
                 yield Tokenizer.decode(
